@@ -4,11 +4,21 @@
     "es6": true
   },
   "extends": [
+    "plugin:import/recommended",
     "plugin:promise/recommended",
     "standard",
     "plugin:node/recommended",
     "plugin:prettier/recommended"
   ],
-  "parser": "esprima",
-  "plugins": ["prettier", "promise", "node" ]
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["prettier", "promise", "node", "import" ],
+  "rules": {
+    "node/no-unsupported-features/es-syntax": 'off'
+  }
 }

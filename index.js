@@ -1,25 +1,6 @@
-'use strict'
+// eslint-disable-next-line no-global-assign
+require = require('esm')(module) // Use esm until node ESM support is stable
 
-require('dotenv').config()
-const Hapi = require('@hapi/hapi')
-const routes = require('./lib/routes')
+require('dotenv').config() // Load env vars from .env file
 
-const init = async () => {
-  const server = Hapi.server({
-    port: process.env.PORT,
-    host: process.env.HOST,
-  })
-
-  server.route(routes)
-
-  await server.start()
-  console.log('Server running on %s', server.info.uri)
-}
-
-process.on('unhandledRejection', err => {
-  console.log(err)
-  // eslint-disable-next-line no-process-exit
-  process.exit(1)
-})
-
-init()
+module.exports = require('./server.js')

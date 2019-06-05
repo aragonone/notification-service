@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./lib"
+    "lint": "eslint ."
   },
   "author": "",
   "license": "GPL-3.0-or-later",
@@ -13,9 +13,12 @@
     "@hapi/hapi": "^18.3.1",
     "@hapi/joi": "^15.0.3",
     "dotenv": "^8.0.0",
+    "esm": "^3.2.25",
+    "jsonwebtoken": "^8.5.1",
     "postmark": "^2.2.6"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^3.1.0",
     "eslint-config-standard": "^12.0.0",
