@@ -3,4 +3,4 @@ require = require('esm')(module) // Use esm until node ESM support is stable
 
 require('dotenv').config() // Load env vars from .env file
 
-module.exports = require('./server.js')
+module.exports = require('./lib/server.js')
