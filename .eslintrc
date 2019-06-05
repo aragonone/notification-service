@@ -1,0 +1,14 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": [
+    "plugin:promise/recommended",
+    "standard",
+    "plugin:node/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "esprima",
+  "plugins": ["prettier", "promise", "node" ]
+}
