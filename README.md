@@ -1,5 +1,7 @@
 # Aragon Notification Service
+## Entities
 
+![diagram](./db.svg)
 
 ## Config
 
@@ -18,5 +20,3 @@ Secrets are stored in `.env` file. For a list of required environment variables 
 $ cp .env.example .env
 # update .env with secrets 
 ```
-
-
