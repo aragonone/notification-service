@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
     table.timestamps(true, true) // default to now
     table
       .string('email')
+      .unique()
       .notNullable()
       .index()
 
