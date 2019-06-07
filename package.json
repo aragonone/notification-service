@@ -11,6 +11,7 @@
   "author": "",
   "license": "GPL-3.0-or-later",
   "dependencies": {
+    "@hapi/boom": "^7.4.2",
     "@hapi/hapi": "^18.3.1",
     "@hapi/joi": "^15.0.3",
     "@promster/hapi": "^2.2.5",
