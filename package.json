@@ -12,6 +12,9 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@hapi/boom": "^7.4.2",
+    "@hapi/good": "^8.2.0",
+    "@hapi/good-console": "^8.1.0",
+    "@hapi/good-squeeze": "^5.2.0",
     "@hapi/hapi": "^18.3.1",
     "@hapi/joi": "^15.0.3",
     "@promster/hapi": "^2.2.5",
