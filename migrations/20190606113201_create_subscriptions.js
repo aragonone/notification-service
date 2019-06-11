@@ -22,11 +22,6 @@ exports.up = function(knex, Promise) {
     table.bigInteger('processed_block')
     table.timestamp('last_poll')
     table.jsonb('contract_abi')
-
-    table
-      .boolean('verified')
-      .notNullable()
-      .defaultTo(false)
   })
 }
 
