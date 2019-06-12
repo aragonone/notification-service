@@ -16,12 +16,15 @@ exports.up = function(knex, Promise) {
       .inTable('users')
 
     table.timestamps(true, true) // default to now
-    table.string('event_hash').notNullable()
+    table.string('app_name').notNullable()
+    table.string('event_name').notNullable()
+    // Use event name instead of hash. With abi, the event hash can be derived
+    // table.string('event_hash')
     table.string('contract_address').notNullable()
     table.bigInteger('from_block').notNullable()
     table.bigInteger('processed_block')
     table.timestamp('last_poll')
-    table.jsonb('contract_abi')
+    table.jsonb('abi')
   })
 }
 
