@@ -25,6 +25,9 @@ exports.up = function(knex, Promise) {
     table.bigInteger('processed_block')
     table.timestamp('last_poll')
     table.jsonb('abi')
+
+    // Ensure subscriptions are unique per user per contract per event
+    table.unique(['user_id', 'contract_address', 'event_name'])
   })
 }
 
