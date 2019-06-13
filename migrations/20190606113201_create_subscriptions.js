@@ -22,7 +22,6 @@ exports.up = function(knex, Promise) {
     // table.string('event_hash')
     table.string('contract_address').notNullable()
     table.bigInteger('from_block').notNullable()
-    table.bigInteger('processed_block')
     table.timestamp('last_poll')
     table.jsonb('abi')
 
