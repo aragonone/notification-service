@@ -1,0 +1,40 @@
+#step 1
+- name: 'gcr.io/cloud-builders/docker' 
+  entrypoint: 'bash'
+  args: [
+   '-c', 
+   'docker pull gcr.io/aragon-core/notification-service:latest || exit 0'
+  ]
+#step 2
+- name: gcr.io/cloud-builders/docker
+  args: [
+   'build', 
+   '-t', 
+   'gcr.io/aragon-core/notification-service:$TAG_NAME',
+   '-t', 
+   'gcr.io/aragon-core/notification-service:latest',
+   '.'
+  ]
+#step 3
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'k8s/']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1'
+#step 4
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set', 
+   'image', 
+   'deployment', 
+   'notification-service', 
+   'notification-service=gcr.io/aragon-core/notification-service:$TAG_NAME'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1'
+# push images to Google Container Registry with tags
+images: [
+   'gcr.io/aragon-core/notification-service:$TAG_NAME',
+   'gcr.io/aragon-core/notification-service:latest'
+  ]
