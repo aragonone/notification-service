@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notification-service
+  labels:
+    app: notification-service
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: notification-service
+spec:
+  template:
+    metadata:
+      labels:
+        app: notification-service
+    spec:
+      containers:
+      - name: server
+        image: gcr.io/aragon-core/notification-service:latest
+        ports:
+        - containerPort: 5000
+        - containerPort: 5001
+        env:
+        - name: METRICS_PORT
+          value: "5001"
+        - name: PORT
+          value: "5000"
+        - name: HOST
+          value: "0.0.0.0"
+        - name: ETH_NODE
+          value: "wss://mainnet.eth.aragon.network/ws"
+        envFrom:
+        - secretRef:
+           name: notification-service-secrets
+
