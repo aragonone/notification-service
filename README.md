@@ -22,3 +22,13 @@ Secrets are stored in `.env` file. For a list of required environment variables 
 $ cp .env.example .env
 # update .env with secrets
 ```
+
+### Docker
+
+#### Build image
+
+`docker build -t notification-service .`
+
+#### Run container
+This will run the container and mount the `.env` runtime config at runtime
+`docker run -it -p 5000:5000 -v $(pwd)/.env:/app/.env notification-service`
