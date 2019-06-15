@@ -15,7 +15,7 @@ spec:
         app: notification-service
     spec:
       containers:
-      - name: server
+      - name: notification-service
         image: gcr.io/aragon-core/notification-service:latest
         ports:
         - containerPort: 5000
