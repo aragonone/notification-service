@@ -5,11 +5,10 @@ metadata:
   labels:
     app: notification-service
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: notification-service
-spec:
   template:
     metadata:
       labels:
