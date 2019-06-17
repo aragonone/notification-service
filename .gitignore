@@ -9,6 +9,8 @@
 # production
 /build
 
+k8s/secrets.yaml
+
 # misc
 .DS_Store
 .cache
