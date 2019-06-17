@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: notification-service
+    release: prometheus
+  name: notification-service
+spec:
+  selector:
+    matchLabels:
+      app: notification-service
+  endpoints:
+  - port: metrics
+    interval: 10s
