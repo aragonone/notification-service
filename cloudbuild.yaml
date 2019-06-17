@@ -8,16 +8,14 @@ steps:
   - name: gcr.io/cloud-builders/docker
     id: 'Build Docker Image'
     args: 
-    [
-      'build',
-      '-t',
-      'gcr.io/aragon-core/notification-service:$COMMIT_SHA',
-      '-t',
-      'gcr.io/aragon-core/notification-service:latest',
-      '--cache-from',
-      'gcr.io/aragon-core/notification-service:latest',
-      '.'
-    ]
+    - 'build'
+    - '-t'
+    - 'gcr.io/aragon-core/notification-service:$COMMIT_SHA'
+    - '-t'
+    - 'gcr.io/aragon-core/notification-service:latest'
+    - '--cache-from'
+    - 'gcr.io/aragon-core/notification-service:latest'
+    - '.'
   - name: gcr.io/cloud-builders/gcloud
     id: 'Decrypt environment variables'
     args:
