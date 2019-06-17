@@ -24,7 +24,7 @@ steps:
       - '--ciphertext-file=k8s/secrets.yaml.enc'
       - '--plaintext-file=k8s/secrets.yaml'
       - '--location=global'
-      -  # Vars set in Cloud Build substitution variables
+      # Vars in Cloud Build substitution variables
       - '--keyring=$_KEYRING'
       - '--key=$_KEY'
   #
