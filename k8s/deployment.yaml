@@ -21,6 +21,8 @@ spec:
         - containerPort: 5000
         - containerPort: 5001
         env:
+        - name: NODE_ENV
+          value: "production"
         - name: METRICS_PORT
           value: "5001"
         - name: PORT
