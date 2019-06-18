@@ -1,4 +1,4 @@
-FROM node:12
+FROM node:12 AS base  
 
 RUN mkdir -p /app/node_modules && chown -R node:node /app
 
@@ -12,11 +12,13 @@ USER node
 COPY package*.json ./
 
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
-
 # Bundle app source
 COPY . .
 
+# ---- Test ----
+FROM base as test
+RUN npm run lint
+
+# ---- Release ----
 CMD [ "npm", "start" ]
 
