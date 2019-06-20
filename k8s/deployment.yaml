@@ -31,8 +31,6 @@ spec:
           value: "0.0.0.0"
         - name: ETH_NODE
           value: "wss://rinkeby.eth.aragon.network/ws"
-        - name: PG_CONNECTION_STRING
-          value: "postgres://localhost:5432"
         - name: IPFS_NODE
           value: "ipfs.eth.aragon.network"
         - name: DEBUG_KNEX
