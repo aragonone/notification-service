@@ -35,6 +35,8 @@ spec:
           value: "ipfs.eth.aragon.network"
         - name: DEBUG_KNEX
           value: "true"
+        - name: EXTERNAL_URL
+          value: "https://notifications.eth.aragon.network"
         envFrom:
         - secretRef:
            name: notification-service-secrets
