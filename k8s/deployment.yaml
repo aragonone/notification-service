@@ -31,6 +31,8 @@ spec:
           value: "0.0.0.0"
         - name: ETH_NODE
           value: "wss://mainnet.eth.aragon.network/ws"
+        - name: IPFS_NODE
+          value: "ipfs.eth.aragon.network"
         envFrom:
         - secretRef:
            name: notification-service-secrets
