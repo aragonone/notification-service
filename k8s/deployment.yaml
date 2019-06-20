@@ -31,6 +31,9 @@ spec:
           value: "0.0.0.0"
         - name: ETH_NODE
           value: "wss://rinkeby.eth.aragon.network/ws"
+          value: "0.0.0.0"
+        - name: PG_CONNECTION_STRING
+          value: "postgres://localhost:5432"
         - name: IPFS_NODE
           value: "ipfs.eth.aragon.network"
         - name: DEBUG_KNEX
@@ -38,4 +41,20 @@ spec:
         envFrom:
         - secretRef:
            name: notification-service-secrets
-
+      # Sidecar container to proxy traffic to cloud SQL
+      - name: cloudsql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.14
+        command: ["/cloud_sql_proxy",
+                  "-instances=aragon-core:us-central1:aragon-postgres=tcp:5432",
+                  "-credential_file=/secrets/cloudsql/credentials.json"]
+        securityContext:
+          runAsUser: 2  # non-root user
+          allowPrivilegeEscalation: false
+        volumeMounts:
+          - name: cloudsql-instance-credentials
+            mountPath: /secrets/cloudsql
+            readOnly: true
+    volumes:
+      - name: cloudsql-instance-credentials
+        secret:
+          secretName: cloudsql-instance-credentials
