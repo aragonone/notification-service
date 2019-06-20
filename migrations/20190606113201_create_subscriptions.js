@@ -17,6 +17,7 @@ exports.up = function(knex, Promise) {
 
     table.timestamps(true, true) // default to now
     table.string('app_name').notNullable()
+    table.string('network').notNullable()
     table.string('event_name').notNullable()
     // Use event name instead of hash. With abi, the event hash can be derived
     // table.string('event_hash')
