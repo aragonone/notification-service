@@ -24,9 +24,8 @@ steps:
       - '--ciphertext-file=k8s/secrets.yaml.enc'
       - '--plaintext-file=k8s/secrets.yaml'
       - '--location=global'
-      # Vars in Cloud Build substitution variables
-      - '--keyring=$_KEYRING'
-      - '--key=$_KEY'
+      - '--keyring=aragon-production'
+      - '--key=notification-service'
   #
   # TODO: double check that that it's a no-op if the manifests don't change
   # I suspect that because the docker image tag is not set k8s might consider
