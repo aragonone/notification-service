@@ -17,6 +17,18 @@ spec:
       containers:
       - name: notification-service
         image: gcr.io/aragon-core/notification-service:latest
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 5000
+          initialDelaySeconds: 10
+          periodSeconds: 10
         ports:
         - containerPort: 5000
         - containerPort: 5001
