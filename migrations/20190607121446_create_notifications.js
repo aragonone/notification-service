@@ -17,8 +17,6 @@ exports.up = function(knex, Promise) {
       .references('subscription_id')
       .inTable('subscriptions')
 
-    table.timestamps(true, true) // default to now
-
     table.text('message')
 
     table.string('transaction_hash').notNullable()
