@@ -5,7 +5,7 @@ exports.up = function(knex, Promise) {
       .unsigned()
       .primary()
 
-    table.timestamps(true, true) // default to now
+    table.timestamp('created_at').defaultTo(knex.fn.now())
     table
       .string('email')
       .unique()

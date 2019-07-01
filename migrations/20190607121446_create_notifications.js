@@ -5,6 +5,8 @@ exports.up = function(knex, Promise) {
       .unsigned()
       .primary()
 
+    table.timestamp('created_at').defaultTo(knex.fn.now())
+
     table
       .integer('subscription_id')
       .unsigned()

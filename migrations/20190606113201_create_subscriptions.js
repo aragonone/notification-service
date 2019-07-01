@@ -15,19 +15,22 @@ exports.up = function(knex, Promise) {
       .references('user_id')
       .inTable('users')
 
-    table.timestamps(true, true) // default to now
-    table.string('app_name').notNullable()
-    table.string('network').notNullable()
-    table.string('event_name').notNullable()
-    // Use event name instead of hash. With abi, the event hash can be derived
-    // table.string('event_hash')
-    table.string('contract_address').notNullable()
-    table.bigInteger('from_block').notNullable()
-    table.timestamp('last_poll')
-    table.jsonb('abi')
+    table
+      .integer('eventsource_id')
+      .unsigned()
+      .index()
+      .notNullable()
+    table
+      .foreign('eventsource_id')
+      .references('eventsource_id')
+      .inTable('eventsources')
+
+    table.timestamp('created_at').defaultTo(knex.fn.now())
+    // The head block when the subscription was created
+    table.bigInteger('join_block').notNullable()
 
     // Ensure subscriptions are unique per user per contract per event
-    table.unique(['user_id', 'contract_address', 'event_name'])
+    table.unique(['user_id', 'subscription_id', 'eventsource_id'])
   })
 }
 
