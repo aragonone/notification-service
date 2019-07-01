@@ -30,7 +30,7 @@ exports.up = function(knex, Promise) {
     table.bigInteger('join_block').notNullable()
 
     // Ensure subscriptions are unique per user per contract per event
-    table.unique(['user_id', 'subscription_id', 'eventsource_id'])
+    table.unique(['user_id', 'eventsource_id'])
   })
 }
 
