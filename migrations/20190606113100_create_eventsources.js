@@ -21,12 +21,7 @@ exports.up = function(knex, Promise) {
     table.bigInteger('from_block').notNullable()
     table.timestamp('last_poll')
 
-    table.unique([
-      'eventsource_id',
-      'contract_address',
-      'event_name',
-      'network',
-    ])
+    table.unique(['contract_address', 'event_name', 'network'])
   })
 }
 
