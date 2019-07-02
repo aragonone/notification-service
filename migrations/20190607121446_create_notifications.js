@@ -17,6 +17,7 @@ exports.up = function(knex, Promise) {
       .references('subscription_id')
       .inTable('subscriptions')
 
+    table.jsonb('return_values')
     table.text('message')
 
     table.string('transaction_hash').notNullable()
