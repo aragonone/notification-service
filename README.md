@@ -66,3 +66,14 @@ $ gcloud kms encrypt --location global \
 
 $ git commit k8s/secrets.yaml.enc -m "Updated secrets"
 ```
+
+
+## Postgres
+
+Google Cloud SQL is used as a managed Postgres instance. To connect from a [local machine follow this guide](https://cloud.google.com/sql/docs/postgres/connect-admin-proxy).
+
+### TL;DR
+```
+$ cloud_sql_proxy -instances=aragon-core:us-central1:aragon-postgres=tcp:5432
+$ psql "host=127.0.0.1 sslmode=disable dbname=<DB_NAME> user=<USER_NAME>"
+```
