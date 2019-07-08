@@ -43,7 +43,6 @@ spec:
           value: "0.0.0.0"
         - name: ETH_NODE_RINKEBY
           value: "wss://rinkeby.eth.aragon.network/ws"
-          value: "0.0.0.0"
         - name: ETH_NODE_MAINNET
           value: "wss://mainnet.eth.aragon.network/ws"
         - name: IPFS_NODE
