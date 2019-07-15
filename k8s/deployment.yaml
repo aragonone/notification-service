@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: notification-service
-        image: gcr.io/aragon-core/notification-service:latest
+        image: gcr.io/aragon-core/notification-service
         livenessProbe:
           httpGet:
             path: /healthz
