@@ -18,7 +18,7 @@ exports.up = function(knex, Promise) {
       .inTable('subscriptions')
 
     table.jsonb('return_values')
-    table.text('message')
+    table.timestamp('block_time').notNullable()
 
     table.string('transaction_hash').notNullable()
     table.bigInteger('block').notNullable()
