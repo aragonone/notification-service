@@ -32,25 +32,9 @@ spec:
         ports:
         - containerPort: 5000
         - containerPort: 5001
-        env:
-        - name: NODE_ENV
-          value: "production"
-        - name: METRICS_PORT
-          value: "5001"
-        - name: PORT
-          value: "5000"
-        - name: HOST
-          value: "0.0.0.0"
-        - name: ETH_NODE_RINKEBY
-          value: "wss://rinkeby.eth.aragon.network/ws"
-        - name: ETH_NODE_MAINNET
-          value: "wss://mainnet.eth.aragon.network/ws"
-        - name: IPFS_NODE
-          value: "ipfs.eth.aragon.network"
-        - name: DEBUG_KNEX
-          value: "true"
-        - name: CLIENT_URL
-          value: "https://mainnet.aragon.org"
+      envFrom:
+        - configMapRef:
+           name: notification-service-config
         envFrom:
         - secretRef:
            name: notification-service-secrets
