@@ -15,8 +15,6 @@
   "author": "",
   "license": "GPL-3.0-or-later",
   "dependencies": {
-    "@aragon/apm": "^3.1.0",
-    "@aragon/os": "^4.2.0",
     "@hapi/boom": "^7.4.2",
     "@hapi/good": "^8.2.0",
     "@hapi/good-console": "^8.1.0",
@@ -25,16 +23,14 @@
     "@hapi/joi": "^15.0.3",
     "@promster/hapi": "^2.2.5",
     "@promster/server": "^2.1.1",
-    "axios": "^0.19.0",
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
     "hapi-auth-jwt2": "^8.6.1",
-    "js-sha3": "^0.8.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.18.2",
     "pg": "^7.11.0",
     "postmark": "^2.2.6",
-    "web3": "^1.0.0-beta.55"
+    "web3": "^2.0.0-alpha"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
