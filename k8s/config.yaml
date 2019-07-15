@@ -11,4 +11,3 @@ data:
   ETH_NODE_MAINNET: "https://mainnet.eth.aragon.network/"
   IPFS_NODE: "ipfs.eth.aragon.network"
   DEBUG_KNEX: "true"
-  CLIENT_URL: "https://mainnet.aragon.org"
