@@ -15,10 +15,7 @@ RUN npm install
 # Bundle app source
 COPY . .
 
-# ---- Test ----
-FROM base as test
 RUN npm run lint
 
-# ---- Release ----
 CMD [ "npm", "start" ]
 
