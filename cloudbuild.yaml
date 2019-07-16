@@ -32,21 +32,24 @@ steps:
   # it "changed" and start a new pod
   - name: 'gcr.io/cloud-builders/kubectl'
     id: 'Apply manifests'
-    args: ['apply', '-f', 'k8s/']
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      [[ "$BRANCH_NAME" == "master" ]] && /builder/kubectl.bash apply -f k8s/ || echo "Skipping deployment for non-master branches"
   # Set new image tag
   - name: 'gcr.io/cloud-builders/kubectl'
-    args:
-      - 'set'
-      - 'image'
-      - 'deployment'
-      - 'notification-service'
-      - 'notification-service=gcr.io/aragon-core/notification-service:$COMMIT_SHA'
     env:
       - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-1'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      [[ "$BRANCH_NAME" == "master" ]] && /builder/kubectl.bash set image deployment notification-service notification-service=gcr.io/aragon-core/notification-service:$COMMIT_SHA || echo "Skipping deployment for non-master branches"
 # push images to Google Container Registry with tags
 images:
   [
