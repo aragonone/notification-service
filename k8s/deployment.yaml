@@ -32,10 +32,9 @@ spec:
         ports:
         - containerPort: 5000
         - containerPort: 5001
-      envFrom:
+        envFrom:
         - configMapRef:
            name: notification-service-config
-        envFrom:
         - secretRef:
            name: notification-service-secrets
       # Sidecar container to proxy traffic to cloud SQL
