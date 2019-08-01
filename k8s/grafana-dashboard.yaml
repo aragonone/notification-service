@@ -24,8 +24,8 @@ data:
       "editable": true,
       "gnetId": null,
       "graphTooltip": 0,
-      "id": 15,
-      "iteration": 1562329500125,
+      "id": 8,
+      "iteration": 1564662984720,
       "links": [
         {
           "icon": "external link",
@@ -412,15 +412,14 @@ data:
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": "Prometheus",
-          "fill": 0,
+          "fill": 1,
           "gridPos": {
             "h": 9,
             "w": 12,
             "x": 0,
             "y": 16
           },
-          "id": 6,
+          "id": 25,
           "legend": {
             "avg": false,
             "current": false,
@@ -436,41 +435,25 @@ data:
           "nullPointMode": "null",
           "paceLength": 10,
           "percentage": false,
-          "pointradius": 5,
+          "pointradius": 2,
           "points": false,
           "renderer": "flot",
           "seriesOverrides": [],
-          "spaceLength": 10,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "histogram_quantile(0.90, sum(rate(http_request_duration_seconds_bucket{service=~\"$service\", path=~\"$route\", status_code=~\"$status_code\"}[1m])) by (le))",
+              "expr": "sum by (status_code)(increase(http_requests_total{service=\"notification-service\", path!=\"/healthz\"}[5m]))\n\n  ",
               "format": "time_series",
               "intervalFactor": 1,
-              "legendFormat": "Request latency - 90th percentile",
               "refId": "A"
-            },
-            {
-              "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{service=~\"$service\", path=~\"$route\", status_code=~\"$status_code\"}[1m])) by (le))",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "Request latency - 95th percentile",
-              "refId": "B"
-            },
-            {
-              "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{service=~\"$service\", path=~\"$route\", status_code=~\"$status_code\"}[1m])) by (le))",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "Request latency - 99th percentile",
-              "refId": "C"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Request latency (per route)",
+          "title": "Requests per status code",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -486,7 +469,7 @@ data:
           },
           "yaxes": [
             {
-              "format": "s",
+              "format": "short",
               "label": null,
               "logBase": 1,
               "max": null,
@@ -595,286 +578,387 @@ data:
           }
         },
         {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "Prometheus",
+          "fill": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 0,
+            "y": 25
+          },
+          "id": 6,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "paceLength": 10,
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.90, sum(rate(http_request_duration_seconds_bucket{service=~\"$service\", path=~\"$route\", status_code=~\"$status_code\"}[1m])) by (le))",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Request latency - 90th percentile",
+              "refId": "A"
+            },
+            {
+              "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket{service=~\"$service\", path=~\"$route\", status_code=~\"$status_code\"}[1m])) by (le))",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Request latency - 95th percentile",
+              "refId": "B"
+            },
+            {
+              "expr": "histogram_quantile(0.99, sum(rate(http_request_duration_seconds_bucket{service=~\"$service\", path=~\"$route\", status_code=~\"$status_code\"}[1m])) by (le))",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Request latency - 99th percentile",
+              "refId": "C"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Request latency (per route)",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
           "collapse": true,
-          "collapsed": false,
+          "collapsed": true,
           "gridPos": {
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 25
+            "y": 34
           },
           "height": "100px",
           "id": 1,
-          "panels": [],
+          "panels": [
+            {
+              "aliasColors": {},
+              "bars": false,
+              "dashLength": 10,
+              "dashes": false,
+              "datasource": "Prometheus",
+              "fill": 1,
+              "gridPos": {
+                "h": 9,
+                "w": 12,
+                "x": 0,
+                "y": 26
+              },
+              "id": 18,
+              "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+              },
+              "lines": true,
+              "linewidth": 1,
+              "links": [],
+              "nullPointMode": "null",
+              "paceLength": 10,
+              "percentage": false,
+              "pointradius": 5,
+              "points": false,
+              "renderer": "flot",
+              "seriesOverrides": [],
+              "spaceLength": 10,
+              "stack": false,
+              "steppedLine": false,
+              "targets": [
+                {
+                  "expr": "irate(db_error_total[1m])",
+                  "format": "time_series",
+                  "intervalFactor": 1,
+                  "legendFormat": "Error Rate",
+                  "refId": "A"
+                }
+              ],
+              "thresholds": [],
+              "timeFrom": null,
+              "timeRegions": [],
+              "timeShift": null,
+              "title": "DB Error Rate ",
+              "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+              },
+              "type": "graph",
+              "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+              },
+              "yaxes": [
+                {
+                  "format": "short",
+                  "label": null,
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": true
+                },
+                {
+                  "format": "ops",
+                  "label": null,
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": true
+                }
+              ],
+              "yaxis": {
+                "align": false,
+                "alignLevel": null
+              }
+            },
+            {
+              "aliasColors": {},
+              "bars": false,
+              "cacheTimeout": null,
+              "dashLength": 10,
+              "dashes": false,
+              "fill": 1,
+              "gridPos": {
+                "h": 9,
+                "w": 12,
+                "x": 12,
+                "y": 26
+              },
+              "id": 14,
+              "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+              },
+              "lines": true,
+              "linewidth": 1,
+              "links": [],
+              "nullPointMode": "null",
+              "paceLength": 10,
+              "percentage": false,
+              "pointradius": 2,
+              "points": false,
+              "renderer": "flot",
+              "seriesOverrides": [],
+              "stack": false,
+              "steppedLine": false,
+              "targets": [
+                {
+                  "expr": "irate(web3_error_total[1m])",
+                  "format": "time_series",
+                  "hide": false,
+                  "intervalFactor": 1,
+                  "legendFormat": "",
+                  "refId": "A"
+                }
+              ],
+              "thresholds": [],
+              "timeFrom": null,
+              "timeRegions": [],
+              "timeShift": null,
+              "title": "Web3 Error Rate",
+              "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+              },
+              "type": "graph",
+              "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+              },
+              "yaxes": [
+                {
+                  "format": "short",
+                  "label": null,
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": true
+                },
+                {
+                  "format": "short",
+                  "label": null,
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": true
+                }
+              ],
+              "yaxis": {
+                "align": false,
+                "alignLevel": null
+              }
+            },
+            {
+              "aliasColors": {},
+              "bars": false,
+              "dashLength": 10,
+              "dashes": false,
+              "datasource": "Prometheus",
+              "fill": 1,
+              "gridPos": {
+                "h": 9,
+                "w": 12,
+                "x": 0,
+                "y": 35
+              },
+              "id": 7,
+              "legend": {
+                "avg": false,
+                "current": false,
+                "max": false,
+                "min": false,
+                "show": true,
+                "total": false,
+                "values": false
+              },
+              "lines": true,
+              "linewidth": 1,
+              "links": [],
+              "nullPointMode": "null",
+              "paceLength": 10,
+              "percentage": false,
+              "pointradius": 5,
+              "points": false,
+              "renderer": "flot",
+              "seriesOverrides": [],
+              "spaceLength": 10,
+              "stack": false,
+              "steppedLine": false,
+              "targets": [
+                {
+                  "expr": "sum by (path)(rate(http_requests_total{service=\"$service\", path!=\"/healthz\", status_code=~\"5..\"}[1m]))",
+                  "format": "time_series",
+                  "intervalFactor": 1,
+                  "refId": "B"
+                }
+              ],
+              "thresholds": [],
+              "timeFrom": null,
+              "timeRegions": [],
+              "timeShift": null,
+              "title": "API HTTP 5xx Error Rate",
+              "tooltip": {
+                "shared": true,
+                "sort": 0,
+                "value_type": "individual"
+              },
+              "type": "graph",
+              "xaxis": {
+                "buckets": null,
+                "mode": "time",
+                "name": null,
+                "show": true,
+                "values": []
+              },
+              "yaxes": [
+                {
+                  "format": "short",
+                  "label": null,
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": true
+                },
+                {
+                  "format": "short",
+                  "label": null,
+                  "logBase": 1,
+                  "max": null,
+                  "min": null,
+                  "show": true
+                }
+              ],
+              "yaxis": {
+                "align": false,
+                "alignLevel": null
+              }
+            }
+          ],
           "showTitle": true,
           "title": "Errors",
           "type": "row"
         },
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "Prometheus",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 26
-          },
-          "id": 18,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "paceLength": 10,
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "irate(db_error_total[1m])",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "Error Rate",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "DB Error Rate ",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "ops",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "cacheTimeout": null,
-          "dashLength": 10,
-          "dashes": false,
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 26
-          },
-          "id": 14,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "paceLength": 10,
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "irate(web3_error_total[1m])",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Web3 Error Rate",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": "Prometheus",
-          "fill": 1,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 35
-          },
-          "id": 7,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "nullPointMode": "null",
-          "paceLength": 10,
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum by (path)(rate(http_requests_total{service=\"$service\", path!=\"/healthz\", status_code=~\"5..\"}[1m]))",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "API HTTP 5xx Error Rate",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
           "collapse": true,
           "collapsed": false,
           "gridPos": {
             "h": 1,
             "w": 24,
             "x": 0,
-            "y": 44
+            "y": 35
           },
           "height": "100px",
           "id": 8,
@@ -894,7 +978,7 @@ data:
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 45
+            "y": 36
           },
           "id": 9,
           "legend": {
@@ -980,7 +1064,7 @@ data:
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 45
+            "y": 36
           },
           "id": 2,
           "legend": {
@@ -1066,7 +1150,7 @@ data:
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 54
+            "y": 45
           },
           "id": 10,
           "legend": {
@@ -1260,5 +1344,5 @@ data:
       "timezone": "browser",
       "title": "Notification Service",
       "uid": "jh8U2WIWz",
-      "version": 4
+      "version": 1
     }
