@@ -16,6 +16,7 @@ exports.up = function(knex, Promise) {
       .foreign('subscription_id')
       .references('subscription_id')
       .inTable('subscriptions')
+      .onDelete('CASCADE')
 
     table.jsonb('return_values')
     table.timestamp('block_time').notNullable()
