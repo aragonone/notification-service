@@ -13,6 +13,7 @@ exports.up = function(knex, Promise) {
 
     table.string('contract_address').notNullable()
     table.string('kernel_address').notNullable()
+    table.string('ens_name')
     table.jsonb('abi')
     // Use event name instead of hash. With abi, the event hash can be derived
     table.string('event_name').notNullable()

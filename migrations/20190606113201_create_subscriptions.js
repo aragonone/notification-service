@@ -14,6 +14,7 @@ exports.up = function(knex, Promise) {
       .foreign('user_id')
       .references('user_id')
       .inTable('users')
+      .onDelete('CASCADE')
 
     table
       .integer('eventsource_id')
