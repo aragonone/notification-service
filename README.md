@@ -77,3 +77,6 @@ Google Cloud SQL is used as a managed Postgres instance. To connect from a [loca
 $ cloud_sql_proxy -instances=aragon-core:us-central1:aragon-postgres=tcp:5432
 $ psql "host=127.0.0.1 sslmode=disable dbname=<DB_NAME> user=<USER_NAME>"
 ```
+
+## DB relational model diagram
+To update use https://draw.io and open the `db.drawio` file in the repository.
