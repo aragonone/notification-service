@@ -28,13 +28,14 @@
     "@promster/server": "^2.1.1",
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
+    "ethereum-ens": "0.7.6",
     "hapi-auth-jwt2": "^8.6.1",
     "hapi-swagger": "^10.0.2",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.18.2",
     "pg": "^7.11.0",
     "postmark": "^2.2.6",
-    "web3": "^2.0.0-alpha"
+    "web3": "^1.2.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
