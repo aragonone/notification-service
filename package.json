@@ -26,7 +26,6 @@
     "@hapi/vision": "^5.5.2",
     "@promster/hapi": "^2.2.5",
     "@promster/server": "^2.1.1",
-    "dotenv": "^8.0.0",
     "esm": "^3.2.25",
     "ethereum-ens": "0.7.6",
     "hapi-auth-jwt2": "^8.6.1",
@@ -38,7 +37,8 @@
     "web3": "^1.2.1"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.3",
+    "dotenv": "^8.1.0",
     "eslint": "^6.2.2",
     "eslint-config-prettier": "^6.1.0",
     "eslint-config-standard": "^14.0.1",
