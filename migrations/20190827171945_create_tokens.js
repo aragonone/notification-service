@@ -18,6 +18,9 @@ exports.up = function(knex, Promise) {
       .inTable('users')
       .onDelete('CASCADE')
 
+    // These correlate to AUTH_SCOPES in constants
+    table.enu('token_scope', ['MAGICLINK', 'API']).defaultTo('MAGICLINK')
+
     table
       .boolean('valid')
       .notNullable()
