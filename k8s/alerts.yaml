@@ -1,0 +1,24 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+  name: notification-service-http-errors
+spec:
+  groups:
+  - name: aragon
+    rules:
+    - alert: NotificationServiceHttp4xxError
+      annotations:
+        message: Notification service http 4xx errors rate above 5/s
+      expr: sum(rate(http_requests_total{service=~"notification-service", status_code=~"4.."}[1m]))
+        > 5
+      for: 2m
+      labels:
+        severity: critical
+    - alert: NotificationServiceHttp5xxError
+      annotations:
+        message: Notification service is returning 
+      expr: sum(rate(http_requests_total{service=~"notification-service", status_code=~"5.."}[1m])) > 5
+      for: 2m
+      labels:
+        severity: critical
