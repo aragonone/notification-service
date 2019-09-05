@@ -9,14 +9,14 @@ spec:
       rules:
         - alert: NotificationServiceHttp4xxError
           annotations:
-            message: Notification service http 4xx errors rate above 5/s
+            message: Notification service HTTP 4xx errors rate spike
           expr: sum(rate(http_requests_total{service=~"notification-service", status_code=~"4.."}[1m])) > 2
           for: 2m
           labels:
             severity: critical
         - alert: NotificationServiceHttp5xxError
           annotations:
-            message: Notification service is returning
+            message: Notification service HTTP 4xx errors rate spike
           expr: sum(rate(http_requests_total{service=~"notification-service", status_code=~"5.."}[1m])) > 2
           for: 2m
           labels:
