@@ -21,3 +21,10 @@ spec:
           for: 2m
           labels:
             severity: critical
+        - alert: NotificationServiceDown
+          annotations:
+            message: Notification service timeseries absent
+          expr: absent(up{job="notification-service"})
+          for: 1m
+          labels:
+            severity: critical
