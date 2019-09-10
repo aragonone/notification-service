@@ -1,4 +1,4 @@
-FROM node:12 AS base  
+FROM node:12.10 AS base
 
 RUN mkdir -p /app/node_modules && chown -R node:node /app
 
