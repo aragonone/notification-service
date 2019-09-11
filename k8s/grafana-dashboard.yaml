@@ -25,7 +25,7 @@ data:
       "gnetId": null,
       "graphTooltip": 0,
       "id": 3,
-      "iteration": 1568122360351,
+      "iteration": 1568202090601,
       "links": [
         {
           "icon": "external link",
@@ -174,7 +174,7 @@ data:
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum(increase(notification_scanner_scanned_contracts[5m]))",
+              "expr": "notification_scanner_scanned_contracts",
               "format": "time_series",
               "hide": false,
               "intervalFactor": 1,
@@ -186,7 +186,7 @@ data:
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Scanned  Contracts in the last five minutes",
+          "title": "Scanned Contracts",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -1429,5 +1429,5 @@ data:
       "timezone": "browser",
       "title": "Notification Service",
       "uid": "jh8U2WIWz",
-      "version": 1
+      "version": 2
     }
