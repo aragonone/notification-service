@@ -12,3 +12,4 @@ data:
   IPFS_NODE: "ipfs.eth.aragon.network"
   DEBUG_KNEX: "false"
   DEBUG_SCANNER: "true"
+  DEBUG_SUBSCRIPTIONS: "true"
