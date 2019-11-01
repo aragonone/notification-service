@@ -10,5 +10,5 @@ data:
   ETH_NODE_RINKEBY: "https://rinkeby.eth.aragon.network/"
   ETH_NODE_MAINNET: "https://mainnet.eth.aragon.network/"
   IPFS_NODE: "ipfs.eth.aragon.network"
-  DEBUG_KNEX: "true"
+  DEBUG_KNEX: "false"
   DEBUG_SCANNER: "true"
