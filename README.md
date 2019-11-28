@@ -5,13 +5,33 @@ A node.js service to manage ethereum blockchain subscriptions and alert on speci
 ## Architecture
 
 The service exposes a REST API for:
-  - creating accounts 
-  - passwordless logins with email tokens
-  - managing subscriptions
+ - creating accounts
+ - passwordless logins with email tokens
+ - managing subscriptions
 
 The service has to async jobs:
  - scan ethereum blockchain for new events, match with subscriptions and queue emails
  - send queued notifications emails
+
+## Stack
+ - PostgreSQL as the main persistence layer.
+ - Knex.js to build SQL queries
+ - hapi.js for the REST API
+ - jsonwebtoken for signing JWT auth tokens
+
+## Authentication / Authorisation
+
+The system has no concept of passwords.
+
+Authentication is done by calling the login endpoint which:
+1. Issues a short lived token
+2. Sends an email with the magic link (a link containing the JWT signed token)
+3. Once the magiclink token is send to the `/verify` endpoint a long lived auth token allows interaction with the full API
+
+
+Hence, two auth scopes are defined:
+- MAGICLINK
+- API
 
 ## Entities
 
