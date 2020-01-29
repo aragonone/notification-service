@@ -10,7 +10,7 @@ The service exposes a REST API for:
 - passwordless logins with email tokens
 - managing subscriptions
 
-The service has to async jobs:
+The service has two async jobs:
 
 - scan ethereum blockchain for new events, match with subscriptions and queue emails
 - send queued notifications emails
