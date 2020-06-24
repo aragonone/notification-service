@@ -1,11 +1,11 @@
-name: Mainnet CI/CD
+name: Production CI/CD
 on:
   push:
     tags:
     - v*
 env:
   # This is a base repository and we use ${GITHUB_REF##*/} to set the version of the container
-  REPO: docker.pkg.github.com/aragonone/notification-service/mainnet
+  REPO: docker.pkg.github.com/aragonone/notification-service/app
 
 jobs:
   build:
