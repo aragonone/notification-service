@@ -76,3 +76,14 @@ This will run the container and mount the `.env` runtime config at runtime
 ## DB relational model diagram
 
 To update use https://draw.io and open the `db.drawio` file in the repository.
+
+## CI/CD
+
+For CI/CD we are using [GitHub Actions](https://github.com/features/actions).
+
+Production build is configured to trigger when creating `v*` tags in the `master` branch. Executing the following:
+```
+git tag v0.1.0
+git push --tags
+```
+Will deploy the following container: `docker.pkg.github.com/aragonone/notification-service/app:v0.1.0`
