@@ -33,4 +33,4 @@ jobs:
     - run: .github/scripts/kubectl-set-image.sh notification-service $REPO:${GITHUB_REF##*/}
     - run: .github/scripts/kubectl-wait-ready.sh notification-service
     # wait 10 sec for k8s to reroute ingress and check app endpoint
-    - run: sleep 10 && curl --fail https://notifications.eth.aragon.network/
+    - run: sleep 10 && curl --fail https://notifications.backend.aragon.org/
